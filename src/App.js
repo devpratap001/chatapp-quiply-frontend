@@ -39,10 +39,10 @@ function App() {
   </div>
   <footer>
     <div className='social'>
-      <i class="fa-brands fa-instagram" />
-      <i class="fa-brands fa-x-twitter" />
-      <i class="fa-brands fa-facebook-f" />
-      <i class="fa-brands fa-youtube" />
+      <i className="fa-brands fa-instagram" />
+      <i className="fa-brands fa-x-twitter" />
+      <i className="fa-brands fa-facebook-f" />
+      <i className="fa-brands fa-youtube" />
     </div>
     <div className='policies'>
       <span>Terms of Service</span>
