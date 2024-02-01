@@ -66,3 +66,40 @@
 .submit:active {
     background-color: rgb(0, 38, 143);
 }
+
+/* styling the profile cards */
+
+.profileCard {
+    display: flex;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px auto;
+    background-color: inherit;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+.active {
+    background-color: rgb(0, 119, 255);
+    color: white;
+}
+.profileData {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+}
+.networkStatus {
+    font-size: 0.6rem;
+    font-weight: lighter;
+}
+/* welcome image styling  */
+
+.welcomeImage {
+    position: relative;
+    width: 600px;
+    left: 80px;
+    top: 50px;
+}

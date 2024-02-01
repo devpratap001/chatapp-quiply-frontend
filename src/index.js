@@ -8,6 +8,8 @@ import App from './App';
 import Register from "./Routes/Register/Register";
 import Login from "./Routes/Login/Login";
 import ChatApp from "./Routes/ChatApp/ChatApp";
+import Chat from './Components/Chat';
+import Welcome from "./Components/Welcome";
 
 const router= createBrowserRouter([
   {
@@ -24,7 +26,17 @@ const router= createBrowserRouter([
   },
   {
     path: "/chatapp",
-    element: <ChatApp />
+    element: <ChatApp />,
+    children: [
+      {
+        index: true,
+        element: <Welcome />
+      },
+      {
+        path: "/chatapp/:user",
+        element: <Chat />
+      }
+    ]
   }
 ])
 

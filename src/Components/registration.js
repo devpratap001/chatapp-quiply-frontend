@@ -9,8 +9,11 @@ export default function Registration({ type, submitFunction }) {
     var warning= useRef(null);
     const Navigate= useNavigate()
     const warningMessage= useSelector(state => {
-        const returnData= type ==="register"? state.register : state.login ;
+        const returnData= type ==="registration"? state.register : state.login ;
         return returnData
+    })
+    const loading= useSelector(state => {
+        return state.loading.isLoading
     })
 
     useEffect(() => {
@@ -55,7 +58,7 @@ export default function Registration({ type, submitFunction }) {
                     <input type="text" className="field" name="userName" required placeholder="Username" />
                     <input type="email" className="field" name="email" required placeholder="Email" />
                     <input type="password" className="field" name="password" required placeholder="Password" />
-                    <input type="submit" className="submit" value="Register" />
+                    <input type="submit" className="submit" value={loading ? "loading...": "Register"} />
                 </form>
                 }
                 {type === "login" && <form ref={loginForm} onSubmit={function (e){
@@ -64,7 +67,7 @@ export default function Registration({ type, submitFunction }) {
                         }}  className="loggingIn">
                     <input type="email" className="field" name="email" required placeholder="Email" />
                     <input type="password" className="field" name="password" required placeholder="Password" />
-                    <input type="submit" className="submit" value="Login" />
+                    <input type="submit" className="submit" value={loading ? "loading...": "Login"} />
                 </form>
                 }
             </div>
