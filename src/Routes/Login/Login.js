@@ -3,9 +3,27 @@ import { useDispatch } from "react-redux";
 import {setIsLoading} from "../../Redux/Slices/loadingSlice";
 import {setIsError} from "../../Redux/Slices/errorSlice";
 import {setLoginData} from "../../Redux/Slices/loginSlice";
+import { useLayoutEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login () {
     const dispatch= useDispatch()
+    const navigate= useNavigate();
+
+    useLayoutEffect(()=> {
+        async function isAuthenticated () {
+            try {
+                const response= await fetch("http://localhost:5000/chatapp/checkAuthenticated", {mode: "cors", credentials: "include"})
+                const authResponse= await response.json();
+                if (! authResponse.error){
+                    navigate("/chatapp")
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        isAuthenticated();
+    })
 
     async function handleLogin (data) {
         try {
@@ -13,12 +31,13 @@ export default function Login () {
             const response= await fetch ("http://localhost:5000/login", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Access-Control-Allow-Credentials":true
                 },
-                body: data
+                body: data,
+                credentials: "include"
             });
             const loginResponse= await response.json();
-            console.log(loginResponse)
             if (loginResponse.error) {
                 dispatch(setIsLoading());
                 dispatch(setIsError())

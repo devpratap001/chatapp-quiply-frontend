@@ -1,9 +1,10 @@
 import { useDeferredValue, useEffect, useState } from "react";
 import ProfileCard from "./profileCard"; 
 import data from "../fakeData";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+    const navigate= useNavigate()
     const [searchedContact, setSearchedContact]= useState("");
     const matchContact= useDeferredValue(searchedContact)
     const [contactList, setcontactList]= useState([])
@@ -29,6 +30,20 @@ export default function Dashboard() {
         setSearchedContact(e.target.value)
     }
 
+    async function handleLogout() {
+        try {
+            const response= await fetch("http://localhost:5000/chatapp/logout", {mode: "cors", credentials: "include"});
+            const logoutResponse= await response.json();
+            if (logoutResponse.error && logoutResponse.error === false){
+                navigate("/")
+            } else {
+                navigate("/login")
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return <>
     <div className="mypage">
         <div className="adminCard">
@@ -36,7 +51,7 @@ export default function Dashboard() {
             <div className="adminData">
                 Devil
                 <i className="fa-solid fa-user" />
-                <Link to="/"><i className="fa-solid fa-right-from-bracket" /></Link>
+                <Link onClick={handleLogout}><i className="fa-solid fa-right-from-bracket" /></Link>
             </div>
         </div>
         <div className="contactSearch">
