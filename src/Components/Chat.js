@@ -1,21 +1,32 @@
-import { useNavigate, useParams } from "react-router-dom";
-import ProfileCard from "./profileCard";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 export default function Chat() {
-    const {user} = useParams();
-    const navigate= useNavigate();
-    
+    const navigate = useNavigate();
+    const { name, userId } = useParams()
+
     function handleMessageSent() {
     }
 
-    function handleBack () {
+    function handleBack() {
         navigate("/chatapp")
     }
 
     return <>
         <div className="friendCard">
             <i className='fa-solid fa-arrow-left back' onClick={handleBack} />
-            <ProfileCard Name={user} />
+            <Link to={"/chatapp/" + name + "/" + userId} >
+                <div className="profileCard">
+                    <img src="/images/profilePicture.png" alt="profile" width="35px" />
+                    <div className="profileData">
+                        <div>
+                            {name}
+                        </div>
+                        <div className="networkStatus">
+                            online
+                        </div>
+                    </div>
+                </div>
+            </Link>
             <div className="calling">
                 <i className="fa-solid fa-phone" />
                 <i className="fa-solid fa-video" />
