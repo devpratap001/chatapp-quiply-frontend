@@ -30,7 +30,7 @@ export default function AllUsers({user}) {
         if (matchUser !== ""){
             const query= new RegExp("^" + matchUser, "i");
             setuserList(() => {
-                const list= realUserList.filter(elem => query.test(elem.name));
+                const list= realUserList.filter(elem => query.test(elem.userName));
                 return list
             })
         } else {

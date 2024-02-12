@@ -14,7 +14,7 @@ export default function Dashboard({user}) {
             try {
                 const response= await fetch("http://localhost:5000/chatapp/getcontacts/" + user._id);
                 const responseData= await response.json();
-                if (! responseData.error){
+                if (! responseData.error ){
                     setrealcontactList(responseData);
                 }
             } catch (error) {
@@ -26,14 +26,13 @@ export default function Dashboard({user}) {
 
     useEffect(() => {
         setcontactList(realContactList)
-        console.log(realContactList);
     },[realContactList])
 
     useEffect(() => {
         if (matchContact !== ""){
             const query= new RegExp("^" + matchContact, "i");
             setcontactList(() => {
-                const list= realContactList.filter(elem => query.test(elem.name));
+                const list= realContactList.filter(elem => query.test(elem.userName));
                 return list
             })
         } else {

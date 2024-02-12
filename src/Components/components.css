@@ -103,3 +103,16 @@ a {
     left: 80px;
     top: 50px;
 }
+
+.incoming > .timestamp {
+    font-size: 0.65rem;
+    font-style: italic;
+    color: #696767;
+    text-align: right;
+}
+.outgoing > .timestamp {
+    font-size: 0.65rem;
+    font-style: italic;
+    text-align: right;
+    color: rgb(226, 226, 226);
+}

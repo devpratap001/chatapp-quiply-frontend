@@ -28,7 +28,7 @@ export default function ChatApp() {
     return <>
     <Dashboard user= {user} />
     <div className="chatbox" >
-        <Outlet />
+        <Outlet context={{...user}} />
     </div>
     <AllUsers user= {user} />
     </>
